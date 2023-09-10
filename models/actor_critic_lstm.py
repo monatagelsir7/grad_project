@@ -10,24 +10,9 @@ tf = try_import_tf()
 
 class ActorCriticLSTM(RecurrentTFModelV2):
     def __init__(
-        self,
-        obs_space,
-        action_space,
-        num_outputs,
-        model_config,
-        name,
-        cell_size=64,
+        self, obs_space, action_space, num_outputs, model_config, name, cell_size=64,
     ):
-        """
-        Create a LSTM with an actor-critic output: an output head with size num_outputs for the
-        policy, and an output head of size 1 for the value function.
-        :param obs_space: The size of the previous layer.
-        :param action_space: The amount of actions available to the agent.
-        :param num_outputs: The amount of actions available to the agent.
-        :param model_config: The config dict for the model, unused.
-        :param name: The name of the model.
-        :param cell_size: The amount of LSTM units.
-        """
+    
         super(ActorCriticLSTM, self).__init__(
             obs_space, action_space, num_outputs, model_config, name
         )
