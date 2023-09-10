@@ -36,13 +36,7 @@ class SocialCuriosityModule(MOAModel):
         self.scm_loss_weight = model_config["custom_options"]["scm_loss_weight"]
 
     @staticmethod
-    def create_scm_encoder_model(obs_space, model_config):
-        """
-        Create the encoder submodel, which is part of the SCM.
-        :param obs_space: A single agent's observation space.
-        :param model_config: The model config dict.
-        :return: A new encoder model.
-        """
+    def create_scm_encoder_model(obs_space, model_config)
         original_obs_dims = obs_space.original_space.spaces["curr_obs"].shape
         input_layer = tf.keras.layers.Input(original_obs_dims, name="observations", dtype=tf.uint8)
 
@@ -87,11 +81,7 @@ class SocialCuriosityModule(MOAModel):
         inputs_concatenated = tf.keras.layers.concatenate(inputs)
         activation = get_activation_fn(model_config.get("fcnet_activation"))
 
-        fc_layer = tf.keras.layers.Dense(
-            32,
-            name="fc_forward",
-            activation=activation,
-            kernel_initializer=normc_initializer(1.0),
+        fc_layer = tf.keras.layers.Dense(32, name="fc_forward", activation=activation, kernel_initializer=normc_initializer(1.0),
         )(inputs_concatenated)
 
         output_layer = tf.keras.layers.Dense(
