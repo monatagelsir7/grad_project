@@ -85,11 +85,8 @@ class BaselineModel(RecurrentTFModelV2):
         h1, c1 = state
 
         # Compute the next action
-        (
-            self._model_out,
-            self._value_out,
-            output_h1,
-            output_c1,
+         (self._model_out, self._value_out, output_h1, output_c1,) = self.policy_model.forward_rnn(
+            input_dict, [h1, c1], seq_lens
         ) = self.policy_model.forward_rnn(input_dict, [h1, c1], seq_lens)
 
         return self._model_out, [output_h1, output_c1]
