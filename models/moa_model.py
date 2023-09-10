@@ -167,12 +167,9 @@ class MOAModel(RecurrentTFModelV2):
         # Evaluate the actor-critic model
         pass_dict = {"curr_obs": input_dict["ac_trunk"]}
         h1, c1, h2, c2, *_ = state
-        (
-            self._model_out,
-            self._value_out,
-            output_h1,
-            output_c1,
-        ) = self.actions_model.forward_rnn(pass_dict, [h1, c1], seq_lens)
+        (self._model_out, self._value_out, output_h1, output_c1,) = self.actions_model.forward_rnn(
+            pass_dict, [h1, c1], seq_lens
+        )
 
         # Evaluate the MOA, and generate counterfactual actions.
         # To do this: cycle through all possible actions and get predictions for what other
