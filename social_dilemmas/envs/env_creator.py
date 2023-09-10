@@ -3,15 +3,7 @@ from social_dilemmas.envs.harvest import HarvestEnv
 from social_dilemmas.envs.switch import SwitchEnv
 
 
-def get_env_creator(
-    env,
-    num_agents,
-    use_collective_reward=False,
-    inequity_averse_reward=False,
-    alpha=0.0,
-    beta=0.0,
-    num_switches=6,
-):
+def get_env_creator(def get_env_creator(env, num_agents, use_collective_reward=False, num_switches=6):
     if env == "harvest":
 
         def env_creator(_):
