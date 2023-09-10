@@ -67,8 +67,8 @@ class MapEnv(MultiAgentEnv):
         return_agent_actions=False,
         use_collective_reward=False,
         inequity_averse_reward=False,
-        alpha=0.0,
-        beta=0.0,
+        alpha=5.0,
+        beta=0.05,
     ):
         """
 
