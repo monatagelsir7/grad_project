@@ -6,14 +6,7 @@ tf = try_import_tf()
 
 
 def build_fc_layers(model_config, last_layer, name):
-    """
-    Create a sequence of fully-connected (dense) layers.
-    :param model_config: The config dict containing information on what fully-connected layers to
-    create.
-    :param last_layer: The layer that feeds into the fully connected layer(s) constructed here.
-    :param name: The FC layer name.
-    :return: The last constructed FC layer.
-    """
+    
     hiddens = model_config.get("fcnet_hiddens")
     activation = get_activation_fn(model_config.get("fcnet_activation"))
     for i, size in enumerate(hiddens):
