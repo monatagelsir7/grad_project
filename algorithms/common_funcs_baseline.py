@@ -5,6 +5,7 @@ class BaselineResetConfigMixin(object):
             policy.entropy_coeff_schedule.value = lambda _: new_config["entropy_coeff"]
             policy.config["entropy_coeff"] = new_config["entropy_coeff"]
             policy.lr_schedule.value = lambda _: new_config["lr"]
+           //Enable reuse_workers=True in ppo_trainables by implementing reset_config mixins//
             policy.config["lr"] = new_config["lr"]
 
     def reset_config(self, new_config):
