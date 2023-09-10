@@ -1,3 +1,4 @@
+'init train.py profile'
 #!/usr/bin/env bash
 python -m cProfile -o prof-5.out ../run_scripts/train.py \
 --exp_name TEST_cleanup_scm_ppo \
