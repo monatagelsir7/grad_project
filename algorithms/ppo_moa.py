@@ -40,11 +40,6 @@ POLICY_SCOPE = "func"
 
 
 def loss_with_moa(policy, model, dist_class, train_batch):
-    """
-    Calculate PPO loss with MOA loss
-    :return: Combined PPO+MOA loss
-    """
-    # you need to override this bit to pull out the right bits from train_batch
     logits, state = model.from_batch(train_batch)
     action_dist = dist_class(logits, model)
 
@@ -83,10 +78,6 @@ def loss_with_moa(policy, model, dist_class, train_batch):
 
 
 def extra_moa_fetches(policy):
-    """
-    Adds value function, logits, moa predictions to experience train_batches.
-    :return: Updated fetches
-    """
     ppo_fetches = vf_preds_fetches(policy)
     ppo_fetches.update(moa_fetches(policy))
     return ppo_fetches
