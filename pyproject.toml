@@ -1,5 +1,5 @@
 [tool.black]
-line-length = 101
+line-length = 102
 include = '\.pyi?$'
 exclude = '''
 /(
