@@ -132,4 +132,40 @@ def get_env_test_map(env):
         grid[beam_pos[0], beam_pos[1]] = beam_pos[2]
 
     return grid
+class DummyMapEnv(MapEnv):
+    """This class implements a few missing methods in map env that are needed for testing."""
+
+    def setup_agents(self):
+        map_with_agents = self.get_map_with_agents()
+
+        for i in range(self.num_agents):
+            agent_id = "agent-" + str(i)
+            spawn_point = self.spawn_point()
+            rotation = self.spawn_rotation()
+            grid = map_with_agents
+            # grid = util.return_view(map_with_agents, spawn_point,
+            #                         2, 2)
+            agent = DummyAgent(agent_id, spawn_point, rotation, grid, 2, 2)
+            self.agents[agent_id] = agent
+
+    def execute_custom_reservations(self):
+        return
+
+
+class DummyAgent(Agent):
+    def reward_from_pos(self, new_pos):
+        return 0
+
+    def get_done(self):
+        return False
+
+    def action_map(self, action_number):
+        return BASE_ACTIONS[action_number]
+
+    @property
+    def action_space(self):
+        return DiscreteWithDType(len(ACTION_MAP), dtype=np.uint8)
+
+    def consume(self, char):
+        return char
 
