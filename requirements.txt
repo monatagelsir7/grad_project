@@ -1,8 +1,8 @@
-gym>=0.21.0
+gym>=0.26.2
 ray[rllib]
-pettingzoo>=1.13.1
-opencv-python>=3.4
-numpy>=1.21.0
+pettingzoo>=1.24.0
+opencv-python>=4.8
+numpy>=1.25.2
 scipy
 pandas
 matplotlib
