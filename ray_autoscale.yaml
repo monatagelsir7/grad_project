@@ -1,0 +1,43 @@
+cluster_name: your_cluster_name #<mona tagelsir>
+
+# The minimum number of workers nodes to launch in addition to the head
+# node. This number should be >= 0.
+min_workers: 0 #<NUM WORKERS IN CLUSTER>
+
+# The maximum number of workers nodes to launch in addition to the head
+# node. This takes precedence over min_workers.
+max_workers: 0
+
+initial_workers: 0
+
+# The autoscaler will scale up the cluster to this target fraction of resource
+# usage. For example, if a cluster of 10 nodes is 100% busy and
+# target_utilization is 0.8, it would resize the cluster to 13. This fraction
+# can be decreased to increase the aggressiveness of upscaling.
+target_utilization_fraction: 0.8
+
+# If a node is idle for this many minutes, it will be removed.
+idle_timeout_minutes: 5
+    type: aws
+    region: us-west-1
+    availability_zone: us-west-1a
+
+auth:
+    ssh_user: ubuntu
+head_node:
+    InstanceType: c4.8xlarge
+    ImageId: ami-0077cb35e9589eada 
+     spot
+
+     c4.8xlarge
+     ami-0077cb35e9589eada
+    - echo 'export PATH="/home/ubuntu/anaconda3/bin:$PATH"' >> ~/.bashrc
+    - cd sequential_social_dilemma_games && git fetch && git checkout visible_actions && git pull && pip install -r requirements_autoscale.txt
+    - cd sequential_social_dilemma_games && python setup.py develop
+    - cd ray/python/ray/rllib && git checkout causal_a3c && git pull && python setup-rllib-dev.py --yes
+    - PATH="/home/ubuntu/anaconda3/bin:$PATH" yes | ~/anaconda3/bin/conda install boto3=1.28.42
+    - conda install python=23.7.4 -y
+    - ray stop
+    - ulimit -n 65536; ray start --head --redis-port=6379 --object-manager-port=8076 --autoscaling-config=~/ray_bootstrap_config.yaml
+    - ray stop
+    - ulimit -n 65536; ray start --redis-address=$RAY_HEAD_IP:6379 --object-manager-port=8076
