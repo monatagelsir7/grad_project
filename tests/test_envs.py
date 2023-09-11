@@ -112,3 +112,24 @@ CLEANUP_PROB_MAP = [
     "@H PB@",
     "@@@@@@",
 ]
+def get_env_test_map(env):
+    """Gets a version of the environment map where generic
+    'P' characters have been replaced with specific agent IDs.
+
+    Returns:
+        2D array of strings representing the map.
+    """
+    grid = np.copy(env.world_map)
+
+    for agent_id, agent in env.agents.items():
+        # If agent is not within map, skip.
+        if not (0 <= agent.pos[0] < grid.shape[0] and 0 <= agent.pos[1] < grid.shape[1]):
+            continue
+
+        grid[agent.pos[0], agent.pos[1]] = b"P"
+
+    for beam_pos in env.beam_pos:
+        grid[beam_pos[0], beam_pos[1]] = beam_pos[2]
+
+    return grid
+
