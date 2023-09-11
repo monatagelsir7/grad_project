@@ -73,3 +73,22 @@ TEST_MAP_2 = np.array(
         [b"@"] * 6,
     ]
 )
+# Maps for Harvest
+MINI_HARVEST_MAP = [
+    "@@@@@@",
+    "@ P  @",
+    "@  AA@",
+    "@  AA@",
+    "@  AP@",
+    "@@@@@@",
+]
+
+# Maps for Cleanup
+MINI_CLEANUP_MAP = [
+    "@@@@@@",
+    "@ P  @",
+    "@H BB@",
+    "@R BB@",
+    "@S BP@",
+    "@@@@@@",
+]
