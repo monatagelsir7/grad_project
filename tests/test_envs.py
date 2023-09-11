@@ -92,3 +92,23 @@ MINI_CLEANUP_MAP = [
     "@S BP@",
     "@@@@@@",
 ]
+# Check that apples spawn correctly in cleanup
+APPLE_SPAWN_MAP_CLEANUP = [
+    "@@@@@@",
+    "@ P  @",
+    "@  BB@",
+    "@  BB@",
+    "@  BP@",
+    "@@@@@@",
+]
+
+# Check that the spawn probabilities are correct in cleanup
+# Map to check that cleanup beam removes waste correctly
+CLEANUP_PROB_MAP = [
+    "@@@@@@",
+    "@    @",
+    "@HHPB@",
+    "@RH B@",
+    "@H PB@",
+    "@@@@@@",
+]
